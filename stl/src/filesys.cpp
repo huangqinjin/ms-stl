@@ -120,7 +120,7 @@ _FS_DLL void* __CLRCALL_PURE_OR_CDECL _Open_dir(
     _Errno = 0;
     if (_Dentry.cFileName[0] == L'.'
         && (_Dentry.cFileName[1] == L'\0'
-            || _Dentry.cFileName[1] == L'.' && _Dentry.cFileName[2] == L'\0')) { // skip "." and ".."
+            || (_Dentry.cFileName[1] == L'.' && _Dentry.cFileName[2] == L'\0'))) { // skip "." and ".."
         _Read_dir(_Dest, _Handle, _Ftype);
         if (_Dest[0] != L'\0') {
             return _Handle;
@@ -309,7 +309,7 @@ _FS_DLL space_info __CLRCALL_PURE_OR_CDECL _Statvfs(const wchar_t* _Fname) {
     space_info _Ans  = {static_cast<uintmax_t>(-1), static_cast<uintmax_t>(-1), static_cast<uintmax_t>(-1)};
     wstring _Devname = _Fname;
 
-    if (_Devname.empty() || _Devname.back() != L'/' && _Devname.back() != L'\\') {
+    if (_Devname.empty() || (_Devname.back() != L'/' && _Devname.back() != L'\\')) {
         _Devname.push_back(L'/');
     }
 

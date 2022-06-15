@@ -75,7 +75,7 @@ void _Thrd_sleep(const xtime* xt) { // suspend thread until time xt
     do { // sleep and check time
         Sleep(_Xtime_diff_to_millis2(xt, &now));
         xtime_get(&now, TIME_UTC);
-    } while (now.sec < xt->sec || now.sec == xt->sec && now.nsec < xt->nsec);
+    } while (now.sec < xt->sec || (now.sec == xt->sec && now.nsec < xt->nsec));
 }
 
 void _Thrd_yield() { // surrender remainder of timeslice

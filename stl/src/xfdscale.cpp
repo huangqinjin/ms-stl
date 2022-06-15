@@ -21,12 +21,12 @@ short _FDscale(float* px, long lexp) { // scale *px by 2^xexp with checking
         *px = ps->_Sh[_F0] & _FSIGN ? -_FInf._Float : _FInf._Float;
         return _INFCODE;
     } else if (-xchar < lexp) { // finite result, repack
-        ps->_Sh[_F0] = static_cast<unsigned short>(ps->_Sh[_F0] & ~_FMASK | (lexp + xchar) << _FOFF);
+        ps->_Sh[_F0] = static_cast<unsigned short>((ps->_Sh[_F0] & ~_FMASK) | ((lexp + xchar) << _FOFF));
         return _FINITE;
     } else { // denormalized, scale
         unsigned short sign = static_cast<unsigned short>(ps->_Sh[_F0] & _FSIGN);
 
-        ps->_Sh[_F0] = static_cast<unsigned short>(1 << _FOFF | ps->_Sh[_F0] & _FFRAC);
+        ps->_Sh[_F0] = static_cast<unsigned short>((1 << _FOFF) | (ps->_Sh[_F0] & _FFRAC));
         lexp += xchar - 1;
         if (lexp < -(16 + 1 + _FOFF) || 0 <= lexp) { // underflow, return +/-0
             ps->_Sh[_F0] = sign;
@@ -49,7 +49,7 @@ short _FDscale(float* px, long lexp) { // scale *px by 2^xexp with checking
             }
 
             ps->_Sh[_F0] |= sign;
-            if ((0x8000 < psx || 0x8000 == psx && (ps->_Sh[_F1] & 0x0001) != 0) && (++ps->_Sh[_F1] & 0xffff) == 0) {
+            if ((0x8000 < psx || (0x8000 == psx && (ps->_Sh[_F1] & 0x0001) != 0)) && (++ps->_Sh[_F1] & 0xffff) == 0) {
                 ++ps->_Sh[_F0]; // round up
             } else if (ps->_Sh[_F0] == sign && ps->_Sh[_F1] == 0) {
                 return 0;
