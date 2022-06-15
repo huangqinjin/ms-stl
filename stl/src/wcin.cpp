@@ -14,9 +14,9 @@ _STD_BEGIN
 
 __PURE_APPDOMAIN_GLOBAL static wfilebuf wfin(_cpp_stdin);
 #if defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern wistream wcin(&wfin);
+__PURE_APPDOMAIN_GLOBAL wistream wcin(&wfin);
 #else
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wistream wcin(&wfin);
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wistream wcin(&wfin);
 #endif
 
 struct _Init_wcin { // ensures that wcin is initialized

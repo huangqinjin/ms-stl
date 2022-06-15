@@ -15,10 +15,10 @@ _STD_BEGIN
 __PURE_APPDOMAIN_GLOBAL static filebuf fout(_cpp_stdout);
 
 #if defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern ostream cout(&fout);
+__PURE_APPDOMAIN_GLOBAL ostream cout(&fout);
 
 #else // defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT ostream cout(&fout);
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT ostream cout(&fout);
 #endif // defined(_M_CEE_PURE)
 
 struct _Init_cout { // ensures that cout is initialized

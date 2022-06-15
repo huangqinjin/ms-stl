@@ -16,15 +16,15 @@ _STD_BEGIN
 #pragma init_seg(compiler)
 _PGLOBAL static std::_Init_locks initlocks;
 
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT istream* _Ptr_cin  = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT ostream* _Ptr_cout = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT ostream* _Ptr_cerr = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT ostream* _Ptr_clog = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT istream* _Ptr_cin  = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT ostream* _Ptr_cout = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT ostream* _Ptr_cerr = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT ostream* _Ptr_clog = nullptr;
 
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wistream* _Ptr_wcin  = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wostream* _Ptr_wcout = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wostream* _Ptr_wcerr = nullptr;
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wostream* _Ptr_wclog = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wistream* _Ptr_wcin  = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wostream* _Ptr_wcout = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wostream* _Ptr_wcerr = nullptr;
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wostream* _Ptr_wclog = nullptr;
 _STD_END
 
 constexpr int _Nats = 10; // fclose, xgetloc, locks, facet free, etc.

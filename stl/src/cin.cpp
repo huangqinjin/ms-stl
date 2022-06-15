@@ -15,10 +15,10 @@ _STD_BEGIN
 __PURE_APPDOMAIN_GLOBAL static filebuf fin(_cpp_stdin);
 
 #if defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern istream cin(&fin);
+__PURE_APPDOMAIN_GLOBAL istream cin(&fin);
 
 #else // defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT istream cin(&fin);
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT istream cin(&fin);
 #endif // defined(_M_CEE_PURE)
 
 struct _Init_cin { // ensures that cin is initialized

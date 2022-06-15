@@ -14,9 +14,9 @@ _STD_BEGIN
 
 __PURE_APPDOMAIN_GLOBAL static wfilebuf wfout(_cpp_stdout);
 #if defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern wostream wcout(&wfout);
+__PURE_APPDOMAIN_GLOBAL wostream wcout(&wfout);
 #else
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wostream wcout(&wfout);
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wostream wcout(&wfout);
 #endif
 
 struct _Init_wcout { // ensures that wcout is initialized

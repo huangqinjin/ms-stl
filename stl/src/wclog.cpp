@@ -14,9 +14,9 @@ _STD_BEGIN
 
 __PURE_APPDOMAIN_GLOBAL static wfilebuf wflog(_cpp_stderr);
 #if defined(_M_CEE_PURE)
-__PURE_APPDOMAIN_GLOBAL extern wostream wclog(&wflog);
+__PURE_APPDOMAIN_GLOBAL wostream wclog(&wflog);
 #else
-__PURE_APPDOMAIN_GLOBAL extern _CRTDATA2_IMPORT wostream wclog(&wflog);
+__PURE_APPDOMAIN_GLOBAL _CRTDATA2_IMPORT wostream wclog(&wflog);
 #endif
 
 struct _Init_wclog { // ensures that wclog is initialized
