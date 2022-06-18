@@ -434,6 +434,9 @@ static int __cdecl initialize_pointers() {
     return 0;
 }
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 _CRTALLOC(".CRT$XIC") static _PIFV pinit = initialize_pointers;
 
 #endif // defined _ONECORE

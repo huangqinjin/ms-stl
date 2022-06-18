@@ -10,6 +10,11 @@
 #define _VCRT_ALLOW_INTERNALS
 #endif // _VCRT_ALLOW_INTERNALS
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wmultichar"
+#define ThrowInfo _ThrowInfo
+#endif
+
 #include <Unknwn.h>
 #include <cstdlib> // for abort
 #include <cstring> // for memcpy
@@ -533,6 +538,9 @@ _CRTIMP2_PURE void __CLRCALL_PURE_OR_CDECL __ExceptionPtrCurrentException(void* 
     _Analysis_assume_(_RecordCopy.NumberParameters <= EXCEPTION_MAXIMUM_PARAMETERS);
     RaiseException(_RecordCopy.ExceptionCode, _RecordCopy.ExceptionFlags, _RecordCopy.NumberParameters,
         _RecordCopy.ExceptionInformation);
+#ifdef __clang__
+    __builtin_unreachable();
+#endif
 }
 
 _CRTIMP2_PURE void __CLRCALL_PURE_OR_CDECL __ExceptionPtrCopyException(

@@ -309,8 +309,10 @@ namespace Concurrency {
                     case APTTYPEQUALIFIER_NA_ON_STA:
                     case APTTYPEQUALIFIER_NA_ON_MAINSTA:
                         return true;
+                    default:
                         break;
                     }
+                default:
                     break;
                 }
             }

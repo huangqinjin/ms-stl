@@ -15,11 +15,11 @@ namespace {
         bool _Is_whitespace[256];
 
         constexpr _Whitespace_bitmap_t() noexcept : _Is_whitespace{} {
-            _Is_whitespace[' ']  = true;
-            _Is_whitespace['\n'] = true;
-            _Is_whitespace['\r'] = true;
-            _Is_whitespace['\t'] = true;
-            _Is_whitespace['\0'] = true;
+            _Is_whitespace[(int)' ']  = true;
+            _Is_whitespace[(int)'\n'] = true;
+            _Is_whitespace[(int)'\r'] = true;
+            _Is_whitespace[(int)'\t'] = true;
+            _Is_whitespace[(int)'\0'] = true;
         }
 
         _NODISCARD constexpr bool _Test(const char _Ch) const noexcept {
