@@ -21,7 +21,11 @@
 extern "C" long __isa_enabled;
 
 #ifndef _DEBUG
+#ifdef __clang__
+#pragma clang optimize on
+#else
 #pragma optimize("t", on) // Override /Os with /Ot for this TU
+#endif
 #endif // !_DEBUG
 
 namespace {

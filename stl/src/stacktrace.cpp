@@ -229,7 +229,7 @@ namespace {
                 constexpr size_t max_line_num = sizeof("(4294967295): ") - 1; // maximum possible line number
 
                 off = string_fill(fill, off + max_line_num, str, [line, off](char* s, size_t) {
-                    const int ret = std::snprintf(s + off, max_line_num, "(%u): ", line);
+                    const int ret = std::snprintf(s + off, max_line_num, "(%lu): ", line);
                     _STL_VERIFY(ret > 0, "formatting error");
                     return off + ret;
                 });
@@ -256,12 +256,20 @@ namespace {
 } // namespace
 
 _EXTERN_C
+#ifdef __clang__
+#pragma clang optimize off
+#else
 #pragma optimize("", off) // inhibit tail call optimization to have consistent _Frames_to_skip adjustment here
+#endif
 [[nodiscard]] unsigned short __stdcall __std_stacktrace_capture(unsigned long _Frames_to_skip,
     const unsigned long _Frames_to_capture, void** const _Back_trace, unsigned long* const _Back_trace_hash) noexcept {
     return CaptureStackBackTrace(_Frames_to_skip + 1, _Frames_to_capture, _Back_trace, _Back_trace_hash);
 }
+#ifdef __clang__
+#pragma clang optimize on
+#else
 #pragma optimize("", on) // end inhibit tail call optimization
+#endif
 
 // Some of these functions may throw (They would propagate bad_alloc potentially thrown from
 // string::resize_and_overwrite)
