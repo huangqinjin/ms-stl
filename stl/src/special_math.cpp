@@ -28,6 +28,11 @@
 #define _M_ARM64
 #endif // defined(_M_ARM64EC)
 
+#ifdef __clang__
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wundefined-var-template"
+#endif
+
 // Using headers from Boost.Math
 #include <boost/math/special_functions/bessel.hpp>
 #include <boost/math/special_functions/beta.hpp>
