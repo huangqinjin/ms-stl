@@ -17,7 +17,7 @@
 _EXTERN_C_UNLESS_PURE
 
 _CRTIMP2_PURE _Cvtvec __CLRCALL_PURE_OR_CDECL _Getcvt() { // get conversion info for current locale
-    _Cvtvec _Cvt = {0};
+    _Cvtvec _Cvt = {};
 
     _Cvt._Page      = ___lc_codepage_func();
     _Cvt._Mbcurmax  = ___mb_cur_max_func();

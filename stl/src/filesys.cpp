@@ -226,7 +226,7 @@ _FS_DLL unsigned long long __CLRCALL_PURE_OR_CDECL _Hard_links(const wchar_t* _F
     HANDLE _Handle = _FilesysOpenFile(_Fname, FILE_READ_ATTRIBUTES, FILE_FLAG_BACKUP_SEMANTICS);
 
 #ifdef _CRT_APP
-    FILE_STANDARD_INFO _Info = {0};
+    FILE_STANDARD_INFO _Info = {};
     bool _Ok                 = false;
 
     if (_Handle != INVALID_HANDLE_VALUE) { // get file info
@@ -235,7 +235,7 @@ _FS_DLL unsigned long long __CLRCALL_PURE_OR_CDECL _Hard_links(const wchar_t* _F
     }
     return _Ok ? _Info.NumberOfLinks : static_cast<unsigned long long>(-1);
 #else // _CRT_APP
-    BY_HANDLE_FILE_INFORMATION _Info = {0};
+    BY_HANDLE_FILE_INFORMATION _Info = {};
     bool _Ok                         = false;
 
     if (_Handle != INVALID_HANDLE_VALUE) { // get file info
@@ -329,8 +329,8 @@ _FS_DLL space_info __CLRCALL_PURE_OR_CDECL _Statvfs(const wchar_t* _Fname) {
 _FS_DLL int __CLRCALL_PURE_OR_CDECL _Equivalent(
     const wchar_t* _Fname1, const wchar_t* _Fname2) { // test for equivalent file names
 #ifdef _CRT_APP
-    _FILE_ID_INFO _Info1 = {0};
-    _FILE_ID_INFO _Info2 = {0};
+    _FILE_ID_INFO _Info1 = {};
+    _FILE_ID_INFO _Info2 = {};
     bool _Ok1            = false;
     bool _Ok2            = false;
 
@@ -357,8 +357,8 @@ _FS_DLL int __CLRCALL_PURE_OR_CDECL _Equivalent(
                  : 1;
     }
 #else // _CRT_APP
-    BY_HANDLE_FILE_INFORMATION _Info1 = {0};
-    BY_HANDLE_FILE_INFORMATION _Info2 = {0};
+    BY_HANDLE_FILE_INFORMATION _Info1 = {};
+    BY_HANDLE_FILE_INFORMATION _Info2 = {};
     bool _Ok1                         = false;
     bool _Ok2                         = false;
 
@@ -437,7 +437,7 @@ _FS_DLL int __CLRCALL_PURE_OR_CDECL _Unlink(const wchar_t* _Fname) { // unlink _
 _FS_DLL int __CLRCALL_PURE_OR_CDECL _Copy_file(const wchar_t* _Fname1, const wchar_t* _Fname2) {
     // copy _Fname1 to _Fname2
 #if defined(_ONECORE)
-    COPYFILE2_EXTENDED_PARAMETERS _Params = {0};
+    COPYFILE2_EXTENDED_PARAMETERS _Params = {};
     _Params.dwSize                        = sizeof(COPYFILE2_EXTENDED_PARAMETERS);
     _Params.dwCopyFlags                   = 0;
 
