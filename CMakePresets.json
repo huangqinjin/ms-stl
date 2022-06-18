@@ -1,0 +1,68 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/cmake-build-${presetName}"
+        },
+        {
+            "name": "ninja",
+            "inherits": "default",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "BUILD_TESTING": "OFF"
+            }
+        },
+        {
+            "name": "clang",
+            "inherits": "ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "clang-cl",
+                "CMAKE_CXX_COMPILER": "clang-cl"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "verbose": false
+        },
+        {
+            "name": "ninja",
+            "inherits": "default",
+            "configurePreset": "ninja"
+        },
+        {
+            "name": "clang",
+            "inherits": "ninja",
+            "configurePreset": "clang"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "output": {
+                "verbosity": "verbose"
+            }
+        },
+        {
+            "name": "ninja",
+            "inherits": "default",
+            "configurePreset": "ninja"
+        },
+        {
+            "name": "clang",
+            "inherits": "ninja",
+            "configurePreset": "clang"
+        }
+    ]
+}
